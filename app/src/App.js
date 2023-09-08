@@ -1,6 +1,17 @@
 import './App.css';
 import logo from './fc58df24709df8a82edb2a5b44612e67.jpg'
+
+
+
 function App() {
+
+const text ="text";
+let a = 1;
+ let b = 1;
+let p = <p>да</p>
+let arr = ['orange','apple','pineaple'];
+let pay = 63;
+
   return (
     <div className="App">
       <header className="App-header">
@@ -16,7 +27,8 @@ function App() {
         <div class="input">
           <div class="input_in">
         <p>
-          Вкусные пельмени, это хорошо?
+         {a+b} Вкусные пельмени, это хорошо?{text}
+         {p}
         </p>
         <diV class="yes">
          <input type="radio" value="да" />да<br />
@@ -26,6 +38,12 @@ function App() {
          </div>
          </div>
          </div>
+         <ul>
+          <li>{arr[0]}</li>
+          <li>{arr[1]}</li>
+          <li>{arr[2]}</li>
+        </ul>
+        {pay>60 ? <li>вы купили товар</li>:<li>ошибка</li>}
       </header>
     </div>
   );
