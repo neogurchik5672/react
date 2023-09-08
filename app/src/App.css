@@ -1,0 +1,29 @@
+img{
+  width:400px;
+  display:flex;
+  justify-content: center;
+}
+ul{
+  display:flex;
+  justify-content: space-around;
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+  list-style: none;
+}
+a{
+  color: black;
+  text-decoration: none;
+}
+.input{
+  display:flex;
+  justify-content: center;
+  
+}
+.img{
+  display:flex;
+  justify-content: center;
+}
+.input_in{
+  font-size:27px;
+}
