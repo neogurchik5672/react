@@ -1,5 +1,6 @@
 import './App.css';
-import logo from './fc58df24709df8a82edb2a5b44612e67.jpg'
+import Header from './components/header.js'
+import User from './components/user.js'
 
 
 
@@ -11,18 +12,16 @@ let a = 1;
 let p = <p>да</p>
 let arr = ['orange','apple','pineaple'];
 let pay = 63;
-
+var users = [
+  {"name": "Oleg", "age": 19,"furstname": "bulba" },
+  {"name": "Taras", "age": 47,"furstname": "bulba" },
+  {"name": "Maks", "age": 79,"furstname": "bulba" }
+];  
+const rest = users.map((item,index )=> <User name={item.name} age={item.age} furstname={item.furstname} /> )
   return (
     <div className="App">
-      <header className="App-header">
-        <ul>
-          <li><a href="/">ss</a></li>
-          <li><a href="/">ss</a></li>
-          <li><a href="/">ss</a></li>
-          <li><a href="/">ss</a></li>
-        </ul>
+<Header />
         <div class="img">
-        <img src={logo} alt="img" />
         </div>
         <div class="input">
           <div class="input_in">
@@ -44,7 +43,9 @@ let pay = 63;
           <li>{arr[2]}</li>
         </ul>
         {pay>60 ? <li>вы купили товар</li>:<li>ошибка</li>}
-      </header>
+        
+
+      <div classsName="arr">{rest}</div>
     </div>
   );
 }
