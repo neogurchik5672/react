@@ -6,7 +6,9 @@ import {useState} from 'react';
 
 function App() {
 
-
+  const [notes, setNotes] = useState([1,2,3,4,5,6,7,8,9]);
+  const [defaultradio, setDefaultradio] = useState('text');
+  const [value, setValue] = useState('');
   const [checked, setChecked] = useState(true);
 
 
@@ -33,12 +35,17 @@ function App() {
   </div>;
 	}
 
-	const [value, setValue] = useState('');
+	const [old, setOld] = useState('');
 	
 	function handleChange(event) {
 		setValue(event.target.value);
 	}
+	const [radiol, setRadiol] = useState(1);
 	
+	function changeHandler(event) {
+		setRadiol(event.target.value);
+	}
+
 const text ="text";
 let a = 1;
  let b = 1;
@@ -67,10 +74,41 @@ function sign(){
     surname:surname
   }
   console.log(object)
-  
- 
-
 }
+const initDate = {
+	year:  2025,
+	month: 12,
+	day:   31,
+}
+const [date, setDate] = useState(initDate);
+function dates(prop, event) {
+  setDate({...date, ...{[prop]: event.target.value}});
+}
+function getSum(arr) {
+	let sum = 0;
+	
+
+  
+	for (const elem of arr) {
+		sum += +elem/notes.length;
+    
+	}
+	
+	return sum;
+}
+
+function avg(index, event) {
+  // общая функция-обработчик
+  setNotes([...notes.slice(0, index), event.target.value, ...notes.slice(index + 1)]);
+}
+const result = notes.map((note, index) => {
+  return <input
+    key={index}
+    value={note}
+    onChange={event => avg(index, event)}
+  />;
+})
+
 // function change(event){
 //   setName(event.target.value)
 //   console.log(name)
@@ -146,6 +184,53 @@ function sign(){
 		<p>
 			ваш выбор: {values}
 		</p>
+    <p>66</p>
+сколько вам лет?
+    <select value={old} onChange={event => setOld(event.target.value)}>
+			<option value="1">0-12</option>
+			<option value="2">13-17</option>
+			<option value="3">18-25</option>
+      <option value="4">больше 25</option>
+		</select>
+    <p>
+      {(old === "1") ? "вам меньше 12":
+      (old === "2") ? "вам от 13 до 17":
+      (old === "3") ? "вам от 18 до 25":
+      (old === "4") ? "вам больше 18" : "введите коректное значение"}
+    </p>
+    <p>68</p>
+    <h2>Лучший язык програмирования</h2>
+    <input
+			type="radio"
+			name="radio"
+      className="JS"
+			value="1"
+			checked={radiol === '1' ? true : false}
+			onChange={changeHandler}
+		/>  JS<br />
+     <input
+			type="radio"
+			name="radio"
+			value="2"
+			checked={radiol === '1' ? true : false}
+			onChange={changeHandler}
+		/> Другие языки(зачем они нужны)
+    <p>
+     {radiol[value] === "1" ? "я в тебе не сомневался":"я розачарован"} 
+      {/* доделать */}
+    </p>
+    <p>69</p>
+    <input defaultValue={defaultradio} />
+    <p>70</p>
+  {result }
+  <p>среднее арефметичиское:{getSum(notes)}</p>
+  <p>71</p>
+  <input value={date.year} onChange={event => dates('year', event)}/>
+		<input value={date.month} onChange={event => dates('month', event)}/>
+		<input value={date.day} onChange={event => dates('day', event)}/>
+    <p>
+    {date.day==31 ? "воскресенье":"понедельник"}
+    </p>
      </div>
 
   
