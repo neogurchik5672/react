@@ -5,7 +5,7 @@ import {useState} from 'react';
 
 
 function App() {
-
+  let WeekDays = ['понеделник','вторник','среда','четвег','пятница','суббота','воскресенье'];
   const [notes, setNotes] = useState([1,2,3,4,5,6,7,8,9]);
   const [defaultradio, setDefaultradio] = useState('text');
   const [value, setValue] = useState('');
@@ -80,9 +80,39 @@ const initDate = {
 	month: 12,
 	day:   31,
 }
+
+ const [datefinal, setDatesfinal] = useState('');
 const [date, setDate] = useState(initDate);
-function dates(prop, event) {
-  setDate({...date, ...{[prop]: event.target.value}});
+
+// function dates(prop, event,value) {
+//   setDate({...date, ...{[prop]: event.target.value}});
+//   let resultday =  datess.getDay(value.day)
+
+// }
+const [year, setYearfinal] = useState('');
+const [month, setMonthfinal] = useState('');
+const [day, setDayfinal] = useState('');
+
+function handleyear(event){
+  setYearfinal(event.target.value)
+  let dates = new Date(event.target.value,(month-1),day);
+  let reultfinal = WeekDays[dates.getDay()-1]
+  setDatesfinal(reultfinal);
+}
+function handlemonth(event){
+  setMonthfinal(event.target.value)
+  let  dates = new Date(year,(event.target.value-1),day);
+  let reultfinal = WeekDays[dates.getDay()-1]
+  setDatesfinal(reultfinal);
+}
+function handleday(event){
+  setDayfinal(event.target.value)
+  console.log(event.target.value)
+  console.log(day)
+  let  dates = new Date(year,(month-1),event.target.value);
+  let reultfinal = WeekDays[dates.getDay()-1]
+  console.log(dates)
+  setDatesfinal(reultfinal);
 }
 function getSum(arr) {
 	let sum = 0;
@@ -206,17 +236,20 @@ const result = notes.map((note, index) => {
       className="JS"
 			value="1"
 			checked={radiol === '1' ? true : false}
-			onChange={changeHandler}
+			onChange={(e) => setRadiol(e.target.value)}
 		/>  JS<br />
      <input
 			type="radio"
 			name="radio"
 			value="2"
-			checked={radiol === '1' ? true : false}
-			onChange={changeHandler}
+			checked={radiol === '2' ? true : false}
+			onChange={(e) => {
+        setRadiol(e.target.value)
+        console.log(e.target.value)
+      }}
 		/> Другие языки(зачем они нужны)
     <p>
-     {radiol[value] === "1" ? "я в тебе не сомневался":"я розачарован"} 
+     {radiol === "1" ? "я в тебе не сомневался":"я розачарован"} 
       {/* доделать */}
     </p>
     <p>69</p>
@@ -225,11 +258,12 @@ const result = notes.map((note, index) => {
   {result }
   <p>среднее арефметичиское:{getSum(notes)}</p>
   <p>71</p>
-  <input value={date.year} onChange={event => dates('year', event)}/>
-		<input value={date.month} onChange={event => dates('month', event)}/>
-		<input value={date.day} onChange={event => dates('day', event)}/>
+  <input  onChange={(e) => handleday(e) }/>
+		<input  onChange={(e) => handleday(e) }/>
+		<input onChange={(e) => handleday(e) }/>
+    {day}
     <p>
-    {date.day==31 ? "воскресенье":"понедельник"}
+    день недели {datefinal}
     </p>
      </div>
 
