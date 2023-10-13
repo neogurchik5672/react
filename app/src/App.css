@@ -27,3 +27,18 @@ a{
 .input_in{
   font-size:27px;
 }
+.title p{
+  display:flex;
+  justify-content:space-around;
+}
+
+.title li{
+  list-style-type:none;
+}
+/* .products{
+  width: 50%;
+} */
+.product p{
+  display:flex;
+  justify-content:space-around;
+}
